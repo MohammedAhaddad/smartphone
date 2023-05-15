@@ -1,9 +1,12 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:smartphone/AllWidget/AuthenticationWidget/SignIn.dart';
 import 'package:smartphone/AllWidget/Widget/MyButton.dart';
 import 'package:smartphone/AllWidget/router/router.dart';
+import 'package:smartphone/ApiFileRoute/Sp_helper.dart';
 
 class ProfileWidget extends StatelessWidget {
   const ProfileWidget({Key? key}) : super(key: key);
@@ -59,6 +62,8 @@ class ProfileWidget extends StatelessWidget {
               DefultBigButton(
                 text: "Log out",
                 ontab: () {
+                  Sp_helper.sp_helper.deletTokin();
+
                   AppRouter.navigateWithReplacemtnToWidget(SignIn());
                 },
                 fontcolor: Colors.deepOrangeAccent,

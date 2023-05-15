@@ -1,15 +1,14 @@
 class Auhemoodel {
   int? id;
-  String? name;
+  String? userName;
   String? email;
   String? password;
 
-  Auhemoodel({this.id, this.name, this.email, this.password});
+  Auhemoodel({required this.userName, this.email, this.password});
 
   Auhemoodel.fromJson(Map<String, dynamic> json) {
-    id = json["id"];
     email = json["email"];
+    userName = json["username"];
     password = json["password"];
-    name = json["name"];
   }
 }

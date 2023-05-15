@@ -3,12 +3,18 @@ import 'package:provider/provider.dart';
 import 'package:smartphone/AllWidget/Widget/SplachScreen.dart';
 
 import 'package:smartphone/AllWidget/router/router.dart';
-import 'package:smartphone/ProviderFile/AuheProvider.dart';
+import 'package:smartphone/ApiFileRoute/Sp_helper.dart';
+import 'package:smartphone/ProviderFile/dioProvider.dart';
+import 'package:smartphone/ProviderFile/dioProviderProdct.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Sp_helper.sp_helper.getInit();
   runApp(MultiProvider(
     providers: [
-      ChangeNotifierProvider<AuheProvider>(create: (context) => AuheProvider())
+      ChangeNotifierProvider<dioProvider>(create: (context) => dioProvider()),
+      ChangeNotifierProvider<dioProviderProdct>(
+          create: ((context) => dioProviderProdct()))
     ],
     child: MyApp(),
   ));
@@ -43,6 +49,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       navigatorKey: AppRouter.navKey,
+
       // onGenerateRoute: generateRoute,
       home: SplachScreen(),
     );

@@ -3,7 +3,8 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class MyCategries extends StatelessWidget {
-  const MyCategries({Key? key}) : super(key: key);
+  String name;
+  MyCategries(this.name);
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +21,7 @@ class MyCategries extends StatelessWidget {
           alignment: Alignment.center,
           height: Get.height / 5,
           width: Get.width / 2.7,
-          child: Text("Electronics",
+          child: Text(name,
               style: GoogleFonts.getFont("Raleway",
                   color: Colors.black,
                   fontSize: 20,

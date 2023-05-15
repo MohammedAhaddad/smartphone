@@ -2,8 +2,28 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:smartphone/AllWidget/ProductsWidget/selectProdactWidget.dart';
+import 'package:smartphone/AllWidget/router/router.dart';
 
 class MyProdact extends StatelessWidget {
+  String? title;
+  String? category;
+  num? prais;
+  num? rate;
+  String? imag;
+  MyProdact(
+      {required title,
+      required category,
+      required prais,
+      required rate,
+      required imag}) {
+    this.imag = imag;
+    this.prais = prais;
+    this.title = title;
+    this.category = category;
+    this.rate = rate;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -18,15 +38,16 @@ class MyProdact extends StatelessWidget {
                 borderRadius: BorderRadius.circular(10),
               )),
               backgroundColor: MaterialStateProperty.all(Colors.white)),
-          onPressed: () {},
+          onPressed: () {
+            AppRouter.navigateToWidget(SelectProdactWidget());
+          },
           child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 SizedBox(
-                  width: MediaQuery.of(context).size.width / 7,
+                  width: MediaQuery.of(context).size.width / 8.5,
                   child: CachedNetworkImage(
-                    imageUrl:
-                        "https://citysport.ps/media/catalog/product/cache/af817b51d24a4a22fa62a69e4e99aaf1/c/b/cb8659a8-26fa-41aa-a9f5-82986a14bcc0.jpeg",
+                    imageUrl: imag ?? "",
                   ),
                 ),
                 Column(
@@ -36,17 +57,17 @@ class MyProdact extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text("Fjallraven - Fold...",
+                        Text(title!.substring(0, 15) + "...",
                             style: GoogleFonts.getFont("Raleway",
                                 color: Colors.black,
-                                fontSize: 15,
-                                fontWeight: FontWeight.w600)),
+                                fontSize: 12,
+                                fontWeight: FontWeight.bold)),
                       ],
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text("Men's Clothing",
+                        Text(category ?? "",
                             style: GoogleFonts.getFont("Raleway",
                                 color: Colors.grey,
                                 fontSize: 12,
@@ -56,13 +77,13 @@ class MyProdact extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text("109.95\$",
+                        Text("$prais\$",
                             style: GoogleFonts.getFont("Raleway",
                                 color: Colors.black,
                                 fontSize: 12,
                                 fontWeight: FontWeight.w500)),
                         Icon(Icons.star, color: Colors.yellow),
-                        Text("3.9",
+                        Text(rate.toString(),
                             style: GoogleFonts.getFont("Roboto",
                                 color: Colors.black,
                                 fontSize: 12,
@@ -78,7 +99,9 @@ class MyProdact extends StatelessWidget {
                         style: ButtonStyle(
                             backgroundColor: MaterialStateProperty.all(
                                 Colors.deepOrangeAccent)),
-                        onPressed: () {},
+                        onPressed: () {
+                          AppRouter.navigateToWidget(SelectProdactWidget());
+                        },
                         child: Text("Buy Now",
                             style: GoogleFonts.getFont("Raleway",
                                 color: Colors.white,

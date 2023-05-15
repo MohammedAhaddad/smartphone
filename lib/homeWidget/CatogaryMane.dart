@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class CatogaryMane extends StatelessWidget {
-  String CatogryName;
-  CatogaryMane(this.CatogryName);
+  String? catogryName;
+  CatogaryMane(CatogryName) {
+    this.catogryName = CatogryName;
+  }
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return Column(
       children: [
         Container(
           alignment: Alignment.center,
@@ -20,13 +23,13 @@ class CatogaryMane extends StatelessWidget {
                 backgroundColor: MaterialStateProperty.all(Colors.white)),
             onPressed: () {},
             child: Center(
-                child: Text(CatogryName,
+                child: Text(catogryName ?? "",
                     style: GoogleFonts.getFont("Raleway",
                         color: Colors.black,
                         fontSize: 13,
                         fontWeight: FontWeight.w600))),
           ),
-        )
+        ),
       ],
     );
   }

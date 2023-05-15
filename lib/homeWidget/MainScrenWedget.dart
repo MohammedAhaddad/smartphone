@@ -1,9 +1,13 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:smartphone/AllWidget/Cart/Cart.dart';
 import 'package:smartphone/AllWidget/CategoriesWidget/CategoriesWidgetMane.dart';
 import 'package:smartphone/AllWidget/ProductsWidget/prodact.dart';
 
 import 'package:smartphone/Profile/ProfileWidget.dart';
+import 'package:smartphone/ProviderFile/dioProviderProdct.dart';
 import 'package:smartphone/homeWidget/homeScreen.dart';
 
 class MainScreenWedget extends StatefulWidget {
@@ -27,6 +31,7 @@ class _MainScreenWedgetState extends State<MainScreenWedget> {
           onTap: (value) {
             pageController.jumpToPage(value);
             _index = value;
+            log(_index.toString());
             setState(() {});
           },
           items: const [
