@@ -18,44 +18,40 @@ class MainScreenWedget extends StatefulWidget {
 }
 
 class _MainScreenWedgetState extends State<MainScreenWedget> {
-  int _index = 0;
-  PageController pageController = PageController();
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      bottomNavigationBar: BottomNavigationBar(
-          iconSize: 32,
-          selectedItemColor: Colors.deepOrangeAccent,
-          unselectedItemColor: Colors.grey,
-          currentIndex: _index,
-          onTap: (value) {
-            pageController.jumpToPage(value);
-            _index = value;
-            log(_index.toString());
-            setState(() {});
-          },
-          items: const [
-            BottomNavigationBarItem(icon: Icon(Icons.home), label: "."),
-            BottomNavigationBarItem(icon: Icon(Icons.category), label: "."),
-            BottomNavigationBarItem(icon: Icon(Icons.view_in_ar), label: "."),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.shopping_cart), label: "."),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.account_circle), label: ".")
-          ]),
-      body: PageView(
-          onPageChanged: (value) {
-            _index = value;
-            setState(() {});
-          },
-          controller: pageController,
-          children: [
-            homeScreen(),
-            CategoriesWidgetMane(),
-            prodactWidget(),
-            CartWidgetMane(),
-            ProfileWidget()
-          ]),
-    );
+    return Consumer<dioProviderProdct>(builder: (context, provider, x) {
+      return Scaffold(
+        bottomNavigationBar: BottomNavigationBar(
+            iconSize: 32,
+            selectedItemColor: Colors.deepOrangeAccent,
+            unselectedItemColor: Colors.grey,
+            currentIndex: provider.index,
+            onTap: (value) {
+              provider.pageController.jumpToPage(provider.pagRout(value));
+            },
+            items: const [
+              BottomNavigationBarItem(icon: Icon(Icons.home), label: "."),
+              BottomNavigationBarItem(icon: Icon(Icons.category), label: "."),
+              BottomNavigationBarItem(icon: Icon(Icons.view_in_ar), label: "."),
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.shopping_cart), label: "."),
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.account_circle), label: ".")
+            ]),
+        body: PageView(
+            onPageChanged: (value) {
+              provider.pagRout(value);
+            },
+            controller: provider.pageController,
+            children: [
+              homeScreen(),
+              CategoriesWidgetMane(),
+              prodactWidget(),
+              CartWidgetMane(),
+              ProfileWidget()
+            ]),
+      );
+    });
   }
 }

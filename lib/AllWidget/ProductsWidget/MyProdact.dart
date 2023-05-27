@@ -2,8 +2,11 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:smartphone/AllWidget/ProductsWidget/selectProdactWidget.dart';
 import 'package:smartphone/AllWidget/router/router.dart';
+import 'package:smartphone/Moodle/ProdactMoodle.dart';
+import 'package:smartphone/ProviderFile/dioProviderProdct.dart';
 
 class MyProdact extends StatelessWidget {
   String? title;
@@ -11,12 +14,13 @@ class MyProdact extends StatelessWidget {
   num? prais;
   num? rate;
   String? imag;
-  MyProdact(
-      {required title,
-      required category,
-      required prais,
-      required rate,
-      required imag}) {
+  MyProdact({
+    required title,
+    required category,
+    required prais,
+    required rate,
+    required imag,
+  }) {
     this.imag = imag;
     this.prais = prais;
     this.title = title;
@@ -39,13 +43,13 @@ class MyProdact extends StatelessWidget {
               )),
               backgroundColor: MaterialStateProperty.all(Colors.white)),
           onPressed: () {
-            AppRouter.navigateToWidget(SelectProdactWidget());
+            // AppRouter.navigateToWidget(SelectProdactWidget(prodact!));
           },
           child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 SizedBox(
-                  width: MediaQuery.of(context).size.width / 8.5,
+                  width: MediaQuery.of(context).size.width / 10,
                   child: CachedNetworkImage(
                     imageUrl: imag ?? "",
                   ),
@@ -99,9 +103,7 @@ class MyProdact extends StatelessWidget {
                         style: ButtonStyle(
                             backgroundColor: MaterialStateProperty.all(
                                 Colors.deepOrangeAccent)),
-                        onPressed: () {
-                          AppRouter.navigateToWidget(SelectProdactWidget());
-                        },
+                        onPressed: () {},
                         child: Text("Buy Now",
                             style: GoogleFonts.getFont("Raleway",
                                 color: Colors.white,

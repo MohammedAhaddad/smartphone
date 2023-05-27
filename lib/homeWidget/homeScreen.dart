@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -59,8 +61,8 @@ class homeScreen extends StatelessWidget {
                                 ),
                                 TextButton(
                                     onPressed: () {
-                                      AppRouter.navigateToWidget(
-                                          CategoriesWidgetMane());
+                                      provider.pageController
+                                          .jumpToPage(provider.pagRout(1));
                                     },
                                     child: Text("See all",
                                         style: GoogleFonts.getFont("Raleway",
@@ -82,18 +84,30 @@ class homeScreen extends StatelessWidget {
                                       shrinkWrap: true,
                                       scrollDirection: Axis.horizontal,
                                       itemBuilder: (context, index) {
-                                        return Row(
-                                          children: [
-                                            CatogaryMane(provider.catogey[index]
-                                                    .toString()[0]
-                                                    .toUpperCase() +
-                                                provider.catogey[index]
-                                                    .toString()
-                                                    .substring(1)),
-                                            SizedBox(
-                                              width: Get.width / 40,
-                                            )
-                                          ],
+                                        return GestureDetector(
+                                          onTap: () {
+                                            log("asdf");
+                                            // provider.selectCatogary = provider
+                                            //     .catogey[index]
+                                            //     .toString();
+                                            // provider.getCategorieProducts();
+                                            // AppRouter.navigateToWidget(
+                                            //     prodactWidget());
+                                          },
+                                          child: Row(
+                                            children: [
+                                              CatogaryMane(provider
+                                                      .catogey[index]
+                                                      .toString()[0]
+                                                      .toUpperCase() +
+                                                  provider.catogey[index]
+                                                      .toString()
+                                                      .substring(1)),
+                                              SizedBox(
+                                                width: Get.width / 40,
+                                              )
+                                            ],
+                                          ),
                                         );
                                       },
                                     )),
@@ -115,8 +129,8 @@ class homeScreen extends StatelessWidget {
                                 ),
                                 TextButton(
                                     onPressed: () {
-                                      AppRouter.navigateToWidget(
-                                          prodactWidget());
+                                      provider.pageController
+                                          .jumpToPage(provider.pagRout(2));
                                     },
                                     child: Text("See all",
                                         style: GoogleFonts.getFont("Raleway",
@@ -128,17 +142,17 @@ class homeScreen extends StatelessWidget {
                             Container(
                               child: ListView.builder(
                                   itemCount:
-                                      (provider.prodact!.length / 3).toInt(),
+                                      (provider.prodact.length / 3).toInt(),
                                   shrinkWrap: true,
                                   physics: const NeverScrollableScrollPhysics(),
                                   scrollDirection: Axis.vertical,
                                   itemBuilder: (context, index) {
                                     return GestureDetector(
                                         onTap: () {
-                                          provider.getOneProdact(
-                                              provider.prodact[index].id ?? 1);
                                           AppRouter.navigateToWidget(
-                                              SelectProdactWidget());
+                                              SelectProdactWidget(provider
+                                                  .getOneProdact(provider
+                                                      .prodact[index].id!)));
                                         },
                                         child: homeProdact(
                                           title: provider.prodact[index].title,

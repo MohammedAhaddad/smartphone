@@ -17,6 +17,7 @@ class DioHelper {
 
   Future<Prodact> getOneProdact(int id) async {
     Response response = await dio.get("https://fakestoreapi.com/products/$id");
+    print(response.data);
     return Prodact.fromJson(response.data);
   }
 
@@ -28,5 +29,14 @@ class DioHelper {
     return catogry;
   }
 
-  getOneCatgory() {}
+  getOneCatgory(String Categorie) async {
+    Response response =
+        await dio.get("https://fakestoreapi.com/products/category/$Categorie");
+    List respons = response.data;
+    List<Prodact> prodact = respons.map((e) {
+      return Prodact.fromJson(e);
+    }).toList();
+
+    return prodact;
+  }
 }

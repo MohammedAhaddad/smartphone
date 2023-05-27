@@ -25,22 +25,23 @@ class prodactWidget extends StatelessWidget {
               ),
             ),
             body: Container(
-                color: Color.fromARGB(255, 247, 191, 165),
+                color: const Color.fromARGB(255, 247, 191, 165),
                 child: provider.prodact.isEmpty
-                    ? Center(
+                    ? const Center(
                         child: CircularProgressIndicator(),
                       )
                     : GridView.builder(
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2),
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 2),
                         itemCount: 20,
                         itemBuilder: (context, index) {
                           return MyProdact(
-                            title: provider.prodact![index].title,
-                            category: provider.prodact![index].category,
-                            prais: provider.prodact![index].price,
-                            rate: provider.prodact![index].rating!.rate ?? 0,
-                            imag: provider.prodact![index].image,
+                            title: provider.prodact[index].title,
+                            category: provider.prodact[index].category,
+                            prais: provider.prodact[index].price,
+                            rate: provider.prodact[index].rating!.rate ?? 0,
+                            imag: provider.prodact[index].image,
                           );
                         })));
       },

@@ -40,7 +40,7 @@ class homeProdact extends StatelessWidget {
               )),
               backgroundColor: MaterialStateProperty.all(Colors.white)),
           onPressed: () {
-            AppRouter.navigateToWidget(SelectProdactWidget());
+            // AppRouter.navigateToWidget(SelectProdactWidget());
           },
           child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -116,7 +116,7 @@ class homeProdact extends StatelessWidget {
                                 backgroundColor: MaterialStateProperty.all(
                                     Colors.deepOrangeAccent)),
                             onPressed: () {
-                              AppRouter.navigateToWidget(SelectProdactWidget());
+                              // AppRouter.navigateToWidget(SelectProdactWidget());
                             },
                             child: Text("Buy Now",
                                 style: GoogleFonts.getFont("Raleway",
